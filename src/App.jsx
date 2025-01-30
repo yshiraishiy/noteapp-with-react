@@ -1,13 +1,20 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Sidebar } from "./components/Sidebar";
 import { Main } from "./components/Main";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes")) || []
+  );
   const [activeNote, setActiveNote] = useState(false);
+
+  useEffect(() => {
+    // ローカルストレージにノートを保存する
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const onAddNote = () => {
     const newNote = {
