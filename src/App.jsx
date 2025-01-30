@@ -13,7 +13,7 @@ function App() {
     const newNote = {
       id: uuidv4(),
       title: "新しいノート",
-      content: "新しいノートの内容",
+      content: "",
       modDate: Date.now(),
     };
     setNotes([...notes, newNote]);
